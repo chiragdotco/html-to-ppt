@@ -55,7 +55,14 @@ app.post('/api/convert-raw', async (req, res) => {
 });
 
 if (require.main === module) {
-  app.listen(PORT, () => {
+  process.on('uncaughtException', (err) => {
+    console.error('uncaughtException', err);
+  });
+  process.on('unhandledRejection', (reason) => {
+    console.error('unhandledRejection', reason);
+  });
+
+  app.listen(PORT, '0.0.0.0', () => {
     console.log(`HTML-to-PPT API listening on port ${PORT}`);
   });
 }

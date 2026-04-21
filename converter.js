@@ -1,11 +1,11 @@
 const PptxGenJS = require('pptxgenjs');
-const { JSDOM } = require('jsdom');
 
 function cleanText(text) {
   return (text || '').replace(/\s+/g, ' ').trim();
 }
 
 function extractBlocks(html) {
+  const { JSDOM } = require('jsdom');
   const dom = new JSDOM(`<body>${html || ''}</body>`);
   const { document } = dom.window;
   const blocks = [];
